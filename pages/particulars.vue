@@ -69,11 +69,13 @@
 
     </div>
 
-    <pageAggregation v-if=" data1.type=='手抄报' || data1.type=='简笔画'"
-                     :recommendArticles="recommend_articles"></pageAggregation>
+    <!--
+        <pageAggregation v-if=" data1.type=='手抄报' || data1.type=='简笔画'"
+                         :recommendArticles="recommend_articles"></pageAggregation>
 
-    <pageAggregations v-if=" data1.type=='祝福语' || data1.type=='励志心语' || data1.type=='问答'"
-                      :recommendArticles="recommend_articles"></pageAggregations>
+        <pageAggregations v-if=" data1.type=='祝福语' || data1.type=='励志心语' || data1.type=='问答'"
+                          :recommendArticles="recommend_articles"></pageAggregations>
+    -->
 
   </div>
 </template>
@@ -113,9 +115,6 @@
       let data = await axios.post(`http://47.105.82.246:8888/article/detail`, {"id": query.id});
       let k = [];
       k = data.data.data;
-
-      console.log(data.data.recommend_articles)
-
       for (let i = 0; k.article_info.length > i; i++) {
         let desc = k.article_info[i].desc;
         if (desc != null) {
