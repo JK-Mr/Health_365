@@ -46,7 +46,8 @@
 <style scoped>
   .swiper-slide img {
     width: 592px;
-    height: 360px
+    /*height: 360px*/
+    height: 281px;
   }
 
   .explain {

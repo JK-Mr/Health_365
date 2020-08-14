@@ -6,15 +6,29 @@
         <div class="ylw_header">
           <span class="yl_logo">
             <nuxt-link class="a" to="/">
-              <img :src="'http://xinyuzhiwang.oss-cn-beijing.aliyuncs.com/index/index.png'" alt="">
+<!--              <img :src="'http://xinyuzhiwang.oss-cn-beijing.aliyuncs.com/index/index.png'" alt="">-->
+              <img src="../static/img/logo.png"/>
             </nuxt-link>
           </span>
-          <span class="yl_header_right" @click="menu = !menu">
-            <img src="../static/img/menu.png" alt="">
+          <!--          <span class="yl_header_right" @click="menu = !menu">
+                      <img src="../static/img/menu.png" alt="">
+                    </span>-->
+          <!--个人中心-->
+          <span class="central_individual">
+            <img src="../static/img/central_individual.png"/>
+            <span>个人中心</span>
           </span>
+          <!--竖线-->
+          <span class="vertical_line"></span>
+          <!--医生注册-->
+          <span class="yl_header_right">
+            <img src="../static/img/doctor.png"/>
+            <span>医生注册</span>
+          </span>
+
         </div>
         <!--菜单栏-->
-        <div class="menu" v-show="menu">
+<!--        <div class="menu" v-show="menu">
           <ul>
             <li>
               <nuxt-link :to="{path:'polymerizatio',query:{type:'手抄报'}}">手抄报</nuxt-link>
@@ -32,7 +46,7 @@
               <nuxt-link to="questions">问答</nuxt-link>
             </li>
           </ul>
-        </div>
+        </div>-->
       </div>
       <!--轮播图-->
       <div class="carousel">
@@ -47,35 +61,35 @@
         <ul class="ul">
           <li>
             <a href="#choiceness">
-              <img src="../static/img/article.png" alt="">
-              <span>手抄报</span>
+              <img src="../static/img/健康资讯.jpeg" alt="">
+              <span>健康资讯</span>
             </a>
           </li>
           <li>
             <a href="#stick_figure">
-              <img src="../static/img/brush.png" alt="">
-              <span>简笔画</span>
+              <img src="../static/img/名医问答.jpeg" alt="">
+              <span>名医问答</span>
             </a>
           </li>
           <li>
             <a href="#benediction">
-              <img src="../static/img/envelope.png" alt="">
-              <span>祝福语</span>
+              <img src="../static/img/专家文章.jpeg" alt="">
+              <span>专家文章</span>
             </a>
           </li>
           <li>
             <a href="#motivational">
-              <img src="../static/img/article.png" alt="">
-              <span>励志语</span>
+              <img src="../static/img/养生常识.jpeg" alt="">
+              <span>养生常识</span>
             </a>
           </li>
         </ul>
       </div>
-      <!--精选手抄报-->
+      <!--健康资讯-->
       <p class="p">
         <span class="spn1"><img :src="'http://xinyuzhiwang.oss-cn-beijing.aliyuncs.com/index/tubiao.png'"
-                                alt="">精选手抄报</span>
-        <span class="spn2">Hand copy</span>
+                                alt="">健康资讯</span>
+        <span class="spn2">Health information</span>
       </p>
       <div id="choiceness">
         <div class="ylHealth">
@@ -94,8 +108,8 @@
                 <img class="icon" src="../static/img/play.png" alt="">
               </div>
               <div class="img" v-else>
-                <img v-if="data.image" :src="data.image" alt="">
-                <img v-else :src="'http://47.105.82.246:8888/storage/20180916091219345.jpeg'" alt="">
+                <img v-if="data.image" :src="data.detail_picture" alt="">
+                <img v-else :src="data.detail_picture" alt="">
               </div>
               <div class="content">
                 <p class="p1">{{data.desc}}</p>
@@ -104,18 +118,18 @@
                     :src="'http://xinyuzhiwang.oss-cn-beijing.aliyuncs.com/index/shipin1button.png'" alt=""></span>
                   <span class="spn spn1" v-else><img
                     :src="'http://xinyuzhiwang.oss-cn-beijing.aliyuncs.com/index/article.png'" alt=""></span>
-                  <span class="spn spn2">{{data.read_count}}w人浏览</span>
+                  <span class="spn spn2">{{data.read_count}}人浏览</span>
                 </p>
               </div>
             </div>
           </nuxt-link>
         </div>
       </div>
-      <!--简笔画教学-->
+      <!--名医问答-->
       <p class="p">
         <span class="spn1"><img :src="'http://xinyuzhiwang.oss-cn-beijing.aliyuncs.com/index/tubiao.png'"
-                                alt="">简笔画教学</span>
-        <span class="spn2">Brief strokes</span>
+                                alt="">名医问答</span>
+        <span class="spn2">Doctor  answer</span>
       </p>
       <div id="stick_figure">
         <div class="ylHealth">
@@ -134,8 +148,8 @@
                 <img class="icon" src="../static/img/play.png" alt="">
               </div>
               <div class="img" v-else>
-                <img v-if="data.image" :src="data.image" alt="">
-                <img v-else :src="'http://47.105.82.246:8888/storage/20180916091219345.jpeg'" alt="">
+                <img v-if="data.image" :src="data.detail_picture" alt="">
+                <img v-else :src="data.detail_picture" alt="">
               </div>
               <div class="content">
                 <p class="p1">{{data.desc}}</p>
@@ -144,7 +158,7 @@
                     :src="'http://xinyuzhiwang.oss-cn-beijing.aliyuncs.com/index/shipin1button.png'" alt=""></span>
                   <span class="spn spn1" v-else><img
                     :src="'http://xinyuzhiwang.oss-cn-beijing.aliyuncs.com/index/article.png'" alt=""></span>
-                  <span class="spn spn2">{{data.read_count}}w人浏览</span>
+                  <span class="spn spn2">{{data.read_count}}人浏览</span>
                 </p>
               </div>
             </div>
@@ -154,8 +168,8 @@
       <!--祝福语大全-->
       <p class="p">
         <span class="spn1"><img :src="'http://xinyuzhiwang.oss-cn-beijing.aliyuncs.com/index/tubiao.png'"
-                                alt="">祝福语大全</span>
-        <span class="spn2">Blessing words</span>
+                                alt="">专家文章</span>
+        <span class="spn2">Expert articles</span>
       </p>
       <div id="benediction">
         <div class="ylHealth">
@@ -174,8 +188,8 @@
                 <img class="icon" src="../static/img/play.png" alt="">
               </div>
               <div class="img" v-else>
-                <img v-if="data.image" :src="data.image" alt="">
-                <img v-else :src="'http://47.105.82.246:8888/storage/20180916091219345.jpeg'" alt="">
+                <img v-if="data.image" :src="data.detail_picture" alt="">
+                <img v-else :src="data.detail_picture" alt="">
               </div>
               <div class="content">
                 <p class="p1">{{data.desc.replace("##", "").replace("＃＃","").replace("##","")}}</p>
@@ -184,7 +198,7 @@
                     :src="'http://xinyuzhiwang.oss-cn-beijing.aliyuncs.com/index/shipin1button.png'" alt=""></span>
                   <span class="spn spn1" v-else><img
                     :src="'http://xinyuzhiwang.oss-cn-beijing.aliyuncs.com/index/article.png'" alt=""></span>
-                  <span class="spn spn2">{{data.read_count}}w人浏览</span>
+                  <span class="spn spn2">{{data.read_count}}人浏览</span>
                 </p>
               </div>
             </div>
@@ -194,8 +208,8 @@
       <!--励志心语-->
       <p class="p">
         <span class="spn1"><img :src="'http://xinyuzhiwang.oss-cn-beijing.aliyuncs.com/index/tubiao.png'"
-                                alt="">励志心语</span>
-        <span class="spn2">Inspirational words</span>
+                                alt="">养生常识</span>
+        <span class="spn2">Health knowledge</span>
       </p>
       <div id="motivational">
         <div class="ylHealth">
@@ -214,8 +228,8 @@
                 <img class="icon" src="../static/img/play.png" alt="">
               </div>
               <div class="img" v-else>
-                <img v-if="data.image" :src="data.image" alt="">
-                <img v-else :src="'http://47.105.82.246:8888/storage/20180916091219345.jpeg'" alt="">
+                <img v-if="data.image" :src="data.detail_picture" alt="">
+                <img v-else :src="data.detail_picture" alt="">
               </div>
               <div class="content">
                 <p class="p1">{{data.desc.replace("##", "").replace("＃＃","").replace("##","")}}</p>
@@ -224,7 +238,7 @@
                     :src="'http://xinyuzhiwang.oss-cn-beijing.aliyuncs.com/index/shipin1button.png'" alt=""></span>
                   <span class="spn spn1" v-else><img
                     :src="'http://xinyuzhiwang.oss-cn-beijing.aliyuncs.com/index/article.png'" alt=""></span>
-                  <span class="spn spn2">{{data.read_count}}w人浏览</span>
+                  <span class="spn spn2">{{data.read_count}}人浏览</span>
                 </p>
               </div>
             </div>
@@ -235,8 +249,8 @@
     <!--版权声明-->
     <div class="copyright">
       <p>
-        <span>Copyright朵朵学习网 版权所有 <nuxt-link class="a" to="/about">关于我们</nuxt-link></span>
-        <span>北京快鸟先飞科技有限公司</span>
+        <span>健康365网 版权所有 <nuxt-link class="a" to="/">京ICP备18046799号</nuxt-link></span>
+        <span>北京朵朵互动信息技术有限公司</span>
       </p>
     </div>
   </div>
@@ -269,31 +283,32 @@
     },
     async asyncData() {
       let {data} = await axios.post(`http://47.105.82.246:8888/article/list`);
+/*      console.log(JSON.stringify(data))*/
       /*精选手抄报*/
       let handmouldNewspaper = [];
       for (let i = 0; data.article_lists.length > i; i++) {
-        if (data.article_lists[i].type == "手抄报") {
+        if (data.article_lists[i].type == "健康资讯") {
           handmouldNewspaper.push(data.article_lists[i])
         }
       }
       /*简笔画教学*/
       let stickFigure = [];
       for (let i = 0; data.article_lists.length > i; i++) {
-        if (data.article_lists[i].type == "简笔画") {
+        if (data.article_lists[i].type == "名医问答") {
           stickFigure.push(data.article_lists[i])
         }
       }
       /*祝福语大全*/
       let benediction = [];
       for (let i = 0; data.article_lists.length > i; i++) {
-        if (data.article_lists[i].type == "祝福语") {
+        if (data.article_lists[i].type == "专家文章") {
           benediction.push(data.article_lists[i])
         }
       }
       /*励志心语*/
       let motivational = [];
       for (let i = 0; data.article_lists.length > i; i++) {
-        if (data.article_lists[i].type == "励志心语") {
+        if (data.article_lists[i].type == "养生常识") {
           motivational.push(data.article_lists[i])
         }
       }
@@ -312,10 +327,10 @@
     },
     head() {
       return {
-        title: "小学生手抄报大全,简笔画大全_朵朵学习网",
+        title: "健康365官方网站_权威的健康科普知识平台",
         meta: [
-          {name: 'description', content: '小学生手抄报专栏，为您提供最新的小学生手抄报模板设计大全,包括英语、环保、数学、语文、安全等手抄报图片、内容、资料大全'},
-          {name: 'keyword', content: '手抄报,简笔画,祝福语大全'},
+          {name: 'description', content: '健康365是国内健康领域的一家知识共享经济平台，由权威专家生产科普文章、文章、问答做知识沉淀，让人人都能享有健康的科普知识'},
+          {name: 'keyword', content: '健康365，权威专家、疾病查询、专家文章、名医问答'},
         ],
       }
     },
@@ -400,19 +415,43 @@
 
   .wrapper .ylw_header .yl_logo {
     position: absolute;
-    top: 13px;
-    left: 10px;
-    display: block;
-    width: 130px;
-    height: 24px;
+    top: 12px;
+    width: 180px;
   }
-
+  /*医生注册*/
   .wrapper .ylw_header .yl_header_right {
     position: absolute;
-    top: 25px;
-    right: 10px;
-    width: 40px;
-    height: 40px;
+    top: 30px;
+    right: 1px;
+    font-size: 22px;
+  }
+
+  .wrapper .ylw_header .yl_header_right img{
+    width: 30px;
+    height: 30px;
+    vertical-align: top;
+  }
+  /*个人中心*/
+  .wrapper .ylw_header .central_individual {
+    position: absolute;
+    top: 30px;
+    right: 140px;
+    font-size: 22px;
+  }
+  .wrapper .ylw_header .central_individual img{
+    width: 30px;
+    height: 30px;
+    vertical-align: top;
+  }
+  /*竖线*/
+  .wrapper .ylw_header .vertical_line{
+    position: absolute;
+    top: 30px;
+    right: 130px;
+    height: 30px;
+    width: 2px;
+    background: gray;
+    margin: 0 3px;
   }
 
   /*菜单栏*/

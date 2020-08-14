@@ -8,11 +8,12 @@
             <img src="../static/img/logo.png" alt="">
           </nuxt-link>
         </span>
-        <span class="yl_header_right" @click="menu = !menu">
-          <img src="../static/img/menu.png" alt="">
+        <!--        <span class="yl_header_right" @click="menu = !menu">-->
+        <span class="yl_header_right">
+            <img src="../static/img/menu.png" alt="">
         </span>
         <div class="searchBox">
-          <p style="margin-left: -6px;">
+          <p>
             <input type="text" placeholder="请输入搜索关键词" value="">
             <span class="spa">
               <img src="../static/img/search.png" alt="">
@@ -50,20 +51,45 @@
       <div>
         <h1>{{data1.title}}</h1>
         <p class="p1">
-          <span class="spn">{{data1.read_count}}w阅读</span>
           <span class="spn">{{data1.public_time}}</span>
+          <span class="spn play">{{data1.read_count}}次播放</span>
         </p>
+
+        <div class="picture_information" v-if="data1.doctor_info">
+          <div class="head_portrait">
+            <img :src="data1.doctor_info.profile_photo"/>
+          </div>
+          <div class="details">
+            <span class="details_span1">{{data1.doctor_info.name}}</span>
+            <span class="details_span2">{{data1.doctor_info.type}}</span>
+            <span class="details_span2 left">{{data1.doctor_info.hospital}}</span>
+          </div>
+        </div>
 
         <div class="div" v-html="data1.contents"></div>
       </div>
     </div>
     <!--文章-->
     <div v-else>
+      <div class="img" v-if="data1.detail_picture">
+        <img :src="data1.detail_picture" alt="">
+      </div>
       <h1>{{data1.title}}</h1>
       <p class="p1">
-        <span class="spn">{{data1.read_count}}w阅读</span>
         <span class="spn">{{data1.public_time}}</span>
+        <span class="spn play">{{data1.read_count}}次阅读</span>
       </p>
+
+      <div class="picture_information" v-if="data1.doctor_info">
+        <div class="head_portrait">
+          <img :src="data1.doctor_info.profile_photo"/>
+        </div>
+        <div class="details">
+          <span class="details_span1">{{data1.doctor_info.name}}</span>
+          <span class="details_span2">{{data1.doctor_info.type}}</span>
+          <span class="details_span2 left">{{data1.doctor_info.hospital}}</span>
+        </div>
+      </div>
 
       <div class="div" ref="div" v-html="data1.contents"></div>
 
@@ -113,6 +139,7 @@
         },*/
     async asyncData({query}) {
       let data = await axios.post(`http://47.105.82.246:8888/article/detail`, {"id": query.id});
+/*            console.log(JSON.stringify(data))*/
       let k = [];
       k = data.data.data;
       for (let i = 0; k.article_info.length > i; i++) {
@@ -172,25 +199,80 @@
   .wrapper {
     padding: 0 24px;
     width: 640px;
+    line-height: 40px;
   }
 
+  .wrapper .img {
+    padding-bottom: 20px;
+  }
+  .wrapper .img img{
+    height: 281px;
+  }
   .wrapper h1 {
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    font-size: 38px;
+    font-size: 35px;
   }
 
   .wrapper .p1 {
-    font-size: 20px;
-    padding-top: 25px;
+    font-size: 25px;
+    padding-top: 20px;
     padding-bottom: 30px;
   }
 
   .wrapper .p1 .spn {
-    color: #a3a3a3;
+    color: #7f7f7f;
   }
+
+  .wrapper .p1 .play {
+    padding-left: 40px;
+  }
+
+
+  .wrapper .picture_information {
+    padding-bottom: 20px;
+  }
+
+  .wrapper .picture_information div {
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  .wrapper .picture_information .head_portrait {
+    width: 75px;
+    height: 75px;
+    margin-right: 12px;
+  }
+
+  .wrapper .picture_information .head_portrait img {
+    border-radius: 50px;
+    width: 100%;
+    height: 100%;
+    vertical-align: center;
+  }
+
+  .wrapper .picture_information .details {
+    height: 70px;
+  }
+
+  .wrapper .picture_information .details .details_span1 {
+    display: block;
+    font-weight: bold;
+    font-size: 28px;
+    /*    margin-bottom: 7px;*/
+  }
+
+  .wrapper .picture_information .details .details_span2 {
+    font-size: 23px;
+    color: #7f7f7f;
+  }
+
+  .wrapper .picture_information .details .left {
+    margin-left: 20px;
+  }
+
 
   .wrapper .p1 img {
     height: 100%;
@@ -229,17 +311,15 @@
 
   .wrapper .ylw_header .yl_logo {
     position: absolute;
-    top: 13px;
-    left: 10px;
+    top: 12px;
     display: block;
-    width: 130px;
-    height: 24px;
+    width: 180px;
   }
 
-  .wrapper .yl_header_right {
+  .wrapper .ylw_header .yl_header_right {
     position: absolute;
     top: 25px;
-    right: 10px;
+    right: 1px;
     width: 40px;
     height: 40px;
   }
@@ -297,27 +377,36 @@
   /*搜索框*/
   .wrapper .searchBox {
     width: 235px;
-    margin: 0 auto;
+    margin-left: 207px;
+    padding-top: 5px;
   }
 
   .wrapper .searchBox p input {
     height: 60px;
-    width: 350px;
-    background: #f0f0f0;
-    border: none;
+    width: 320px;
+    background: #f5f4f4;
     padding-left: 20px;
     font-size: 24px;
     border-radius: 50px;
     position: relative;
     top: 12px;
+    border: 2px solid #e9e9e9;
+
+    outline-style: none;
+    outline-width: 0px;
+    text-shadow: none;
+    -webkit-appearance: none;
+    -webkit-user-select: text;
+    outline-color: transparent;
+    box-shadow: none;
   }
 
   .wrapper .searchBox p .spa {
-    width: 34px;
+    width: 25px;
     display: inline-block;
     position: relative;
-    top: -37px;
-    left: 300px;
+    top: -32px;
+    left: 270px;
   }
 
   /*视频*/
